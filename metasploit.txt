@@ -1,0 +1,73 @@
+METASPLOIT.
+
+
+
+PORT SCANNING.
+2 ways:
+1. nmap.
+2. modules.
+
+
+
+BASIC COMMANDS.
+run metasploit:
+msfconsole
+
+look for module:
+search
+
+view command history: 
+history
+
+explanation module:
+help
+
+
+
+
+EXPLOITATION.
+get information exploit:
+info
+
+show parameters of exploit:
+show options
+
+set a parameter x values to y:
+set x y
+
+Clear parameter x:
+unset x
+
+Clear all parameters:
+unset all
+Common parameters:
+1. RHOSTS: target IP.
+2. RPORT: target port.
+3. PAYLOAD: payload to use.
+4. LHOST: attackers IP.
+5. LPORT: attackers port (to reverse shell).
+6. SESSION: for post-exxploitation.
+
+show payloads of exploit:
+show payloads
+
+launch exploit:
+exploit
+
+background session:
+CTRL + Z
+
+end session:
+CTRL + C
+
+list all sessions:
+sessions
+
+start interaction with session:
+session -i session_id
+
+
+
+
+
+

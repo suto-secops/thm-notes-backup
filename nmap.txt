@@ -1,0 +1,152 @@
+NMAP.
+
+
+
+ENUMERATE TARGETS.
+Target can be provided as: list, range, subnet, file:
+MACHINE_IP, example2.org, example3.com
+10.10.12.15-20
+MACHINE_IP/30
+nmap -iL hosts_list.txt
+
+
+
+DISCOVER HOSTS.
+ARP.
+nmap -PR -sn MACHINE_IP
+
+ICMP.
+Echo scan:
+nmap -PE -sn MACHINE_IP
+Timestamp request:
+nmap -PP -sn MACHINE_IP
+Address mask request:
+nmap -PM -sn MACHINE_IP
+
+TCP.
+SYN ping scan:
+nmap -PS -sn MACHINE_IP
+ACK ping scan:
+sudo nmap -PA -sn MACHINE_IP
+UDP ping scan:
+sudo nmap -PU -sn MACHINE_IP
+
+OPTIONS.
+No DNS lookup:
+-n
+Reverse DNS lookup for hosts:
+-R
+Host discovery only:
+-sn
+
+
+
+PORT STATES.
+1. Open: service listening.
+2. Closed: no service listening (but accesible).
+3. Filtered: unsure if open/closed since not accesible (firewall present).
+4. Unfiltered: unsure if open/closed but accesible.
+5. Open|Filtered: unsure if open/filtered.
+6. Close|Filtered: unsure if closed/filtered.
+
+
+
+TCP FLAGS.
+1. URG.
+2. ACK.
+3. PSH.
+4. RST.
+5. SYN.
+6. FIN.
+
+
+
+PORT SCAN.
+TCP connect scan:
+nmap -sT MACHINE_IP
+TCP SYN scan:
+sudo nmap -sS MACHINE_IP
+UDP scan:
+sudo nmap -sU MACHINE_IP
+
+
+
+OPTIONS.
+Scan all ports:
+-p-
+Scan port range:
+-px-y
+Scan 100 most common ports:
+-F
+scan ports consecutive order:
+-r
+Scan speed:
+-T<0-5>
+Packet rate maximum:
+--max-rate x
+Packet rate minimum:
+--max-rate y
+Max probing parallelization:
+--max-parallelism x
+Min probing parallelizaiton:
+--min-parallelism x
+Provide reasoning:
+--reason
+Detailed output:
+-v
+
+
+
+ADVANCED PORT SCANS.
+TCP Null scan:
+sudo nmap -sN MACHINE_IP
+TCP FIN scan:
+sudo nmap -sF MACHINE_IP
+TCP XMAS scan:
+sudo nmap -sX MACHINE_IP
+TCP maimon scan:
+sudo nmap -sM MACHINE_IP
+TCP ACK scan:
+sudo nmap -sA MACHINE_IP
+TCP window scan:
+sudo nmap -sW MACHINE_IP
+TCP custom scan:
+sudo nmap --scanflags FLAG MACHINE_IP
+Spoofed IP scan:
+nmap -S SPOOFED_IP MACHINE_IP
+Decoy scan:
+nmap -D DECOY_IP,ME MACHINE_IP
+Idle/zombie scan:
+nmap -sI ZOMBIE_IP MACHINE_IP
+
+
+
+POST PORT SCANS.
+Service detection:
+-sV
+Service detection with custom intensity:
+-sV --version-intensity LEVEL
+OS detection:
+-O
+Find routers between attacker and target:
+--traceroute
+Run default scripts:
+-sC
+--script=default
+Run script:
+--script=SCRIPT
+
+
+
+SAVING OUTPUT.
+Normal (.nmap):
+-oN FILENAME
+Grepable (.gnmap):
+-oG FILENAME
+XML:
+-oX FILENAME
+All three formats:
+-oA FILENAME
+
+
+
