@@ -1,0 +1,76 @@
+GOBUSTER.
+
+
+
+ENUMERATE WEB DIRECTORY AND FILES.
+Syntax:
+gobuster dir -u "<url>" -w <path directory list>
+
+Flags:
+Configure cookie: 
+-c
+- cookies
+Extension to scan for:
+-x
+--extensions
+Header to pass with each request:
+-H
+--headers
+Skip http certificate validation:
+-k 
+--no-tls-validation
+Dont show each response status code:
+-n
+--no-status
+Authenticated request (uses both flags):
+-P, -U
+password, --username
+Configure specific status codes to not show:
+-b
+--status-codes-blacklist
+Continue gobuster in redirection:
+-r 
+--followredirect
+
+
+
+SUBDOMAIN ENUMERATION.
+Syntax:
+gobuster dns -d <url> -w <path directory list>
+
+Flags:
+Show CNAME records:
+-c
+--show-cname
+Show IP addresses that domain and subdomains resolve to:
+-i 
+--show-ips
+Configure custom DNS server for resolving:
+-r
+--resolver
+Configure domain to enumerate:
+-d
+--domain
+
+
+
+VHOST ENUMERATION.
+Syntax:
+gobuster vhost -u "<url>" -w <path subdomain list>
+
+Flags:
+Specify base url:
+-u
+--url
+Append base domain to each ord in wordlist:
+--append-domain
+Specify HTTP method:
+-m
+--method
+Append domain to each wordlist to create valid hostname:
+--domain
+Exclude results based length response body:
+--exclude-length
+Follow HTTP redirects:
+-r
+--follow-redirect

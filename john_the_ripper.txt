@@ -1,0 +1,62 @@
+JOHN THE RIPPER.
+
+
+
+BASIC SYNTAX.
+john [options] [file path]
+
+
+
+AUTOMATIC CRACKING.
+john --wordlist=[path wordlist]  [path file]
+Note:
+wordlists stored in /usr/share/wordlists
+
+
+
+IDENTIFY HASH.
+hash-id.py
+
+
+
+FORMAT SPECIFIC CRACKING.
+john --format=[format] --wordlist=[path wordlist] [path file]
+If hash is standard, add prefix to format:
+--format=raw-[format]
+
+
+
+CRACKING HASHES FROM ETC/SHADOW.	
+Unshadowing (passwd is copy of etc/passwd file, shadow is copy of etc/shadow file):
+unshadow [path passwd] [path shadow]
+Cracking unshadowed output:
+john --wordlist=[path wordlist] --format=sha512-crypt unshadowed.txt
+
+
+
+SINGLE CRACK MODE.
+Note: hash file needs to be modified, adding "username:" before the hash. Result: "username":"hash".
+john --single --format=[format] [path file]
+Using custom rules:
+john --wordlist=[path wordlist] --rule=[rule name] [path file]
+
+
+
+PASSWORD PROTECTED ZIP FILE.
+Convert zip to hash:
+zip2john [options] [zip file] > [output file]
+
+
+
+PASSWORD PROTECTED RAR FILE.
+Convert rar to hash:
+rar2john [rar file] > [output file]
+
+
+
+CRACKING SSH KEYS.
+Convert rsa key to hash:
+Option 1:
+ssh2john [id_rsa private key file] >  [output file]
+Option 2:
+python /usr/share/john/ssh2.john.py [id_rsa private key file] > [output file]
