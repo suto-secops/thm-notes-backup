@@ -1,0 +1,35 @@
+NETCAT.
+
+
+
+REVERSE SHELLS.
+Syntax:
+nc -lvnp <port>
+Example:
+sudo nc -lvnp 443
+
+
+
+BIND SHELLS.
+Syntax:
+nc <target_ip> <chosen_port>
+
+
+
+SHELL STABILISATION.
+Method 1: python.
+3 steps:
+Step 1:
+python -c 'import pty;pty.spawn("/bin/bash")'
+Note: python might need to be replaced with python2 or python3-
+Step 2:
+export TERM=xterm
+Step 3:
+In shell:
+Ctrl+Z
+In attackers terminal:
+stty raw -echo; fg
+
+Method 2: rlwrap.
+Syntax (to invoke listener):
+rlwrap nc -lvnp <port>

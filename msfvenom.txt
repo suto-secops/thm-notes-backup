@@ -1,0 +1,5 @@
+MSFVENOM.
+
+
+Syntax:
+msfvenom -p <PAYLOAD> <OPTIONS>

