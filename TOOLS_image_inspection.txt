@@ -1,0 +1,75 @@
+TOOLS IMAGE INSPECTION.
+
+
+
+
+1. EXIFTOOL.
+Description:
+Extracts medata from images.
+
+Basic syntax:
+exiftool <image.extension>
+
+Options:
+-gpslatitude -gpslongitude: extract location metadata.
+
+
+2. BINWALK.
+Description:
+Scans images for embedded files and hidden data (steganography).
+
+Basic syntax:
+binwalk <image.extension>
+
+Options:
+-e: extracts files automatically.
+
+
+
+
+3. STEGHIDE.
+Description:
+Extracts hidden embedded data. 
+
+Basic syntax:
+steghide extract -sf <image.extension>
+
+
+
+
+4. ZSTEG.
+Description:
+Detects LSB steganography in .PNG and .BMP extension.
+
+Basic syntax:
+zsteg <image.extension>
+
+
+
+
+5. STRINGS.
+Description:
+Extracts ASCII readable strings from binary files.
+
+Basic syntax:
+strings <image.extension>
+
+
+
+
+6. TESSERACT.
+Description:
+Does OCR on images.
+
+Basic syntax:
+tesseract <image.extension> <output>.txt
+
+
+
+
+7. FOREMOST/SCALPEL.
+Description:
+Gets hidden embedded files.
+
+Basic syntax:
+foremost -i <image.extension> -o output_folder
