@@ -1,0 +1,374 @@
+FFUF.
+
+
+
+
+BASIC SYNTAX.
+ffuf -u http://<ip>/FUZZ -w <wordlist> 
+Note:
+FUZZ tels ffuf where to inject wordlist entries.
+
+
+
+
+HTTP OPTIONS.
+1. -H:
+Specify value of a header:
+-H "<header_name>: <header_value>"
+Example:
+"Authorization: Bearer mytoken123"
+
+
+2. -X:
+Specify HTTP method to use:
+-X <http_method>
+Example:
+-X POST
+
+
+3. -b:
+Send a specific cookie with each request:
+-b "<cookie_name>=<cookie_value>"
+Example:
+-b "sessionid=abc123"
+
+
+4. -d:
+Indicates where to inject fuzzing payloads:
+Example:
+-d "username=FUZZ&password=secret"
+
+
+5. -ignore-body:
+Ignore response body content when checking if a response is different or interesting:
+-ignore-body
+
+
+6. -r:
+Follow redirects:
+-r
+
+
+7. -recursion:
+Fuzz discovered endpoints automatically:
+-recursion
+
+
+8. -recursion-depth:
+Set directory nesting fuzz limit:
+-recursion-depth <number>
+Example:
+-recursion-depth 3
+
+
+9. -recursion-strategy:
+Determine ffuf strategy to decide which urls to recurse:
+-recursion-strategy <strategy_name>
+strategy_name values:
+1. greedy (runs default): recurse every directory, independently of its path.
+2. same-dir: only recurse into directories at the same directory level as original fuzzing url.
+3. parent: recurse into parent directories relative to current fuzzing path.
+
+
+10. -replay-proxy:
+Send copy of each requets to a secondary proxy (example: Burp Suite, ZAP, etc.):
+-replay-proxy http://<ip>:<port>
+Example:
+-replay-proxy http://127.0.0.1:8081
+
+
+11. -timeout:
+Maximum seconds to wait before giving a request up:
+-timeout <number>
+Example:
+-timeout 5
+
+
+12. -x:
+Route fuzzing traffic through proxy:
+-x http://<ip>:<port>
+Example:
+-x http://user:pass@proxy.example.com:8080
+
+
+
+
+GENERAL OPTIONS.
+1. -V:
+Show version information:
+-V
+
+
+2. -ac:
+Enable auto-calibration. Fffuf filters responses (404s, etc.):
+-ac
+
+
+3. -acc:
+Sets number of calibration requests to send in parallel during auto-calibration:
+-ac -acc <number>
+Example:
+-ac -acc 5
+
+
+4. -c:
+Colorize output (status codes, length, etc.):
+-c
+
+
+5. -config:
+Store and reuse ffuf settings:
+-config <configuration_file_name>.json
+Example:
+-config deep_fuzzing.json
+
+
+6. -maxtime:
+Limit time in seconds to stop the entire scan:
+-maxtime <number>
+Example:
+-maxtime 120
+
+
+7. -maxtime-job:
+Set maximum time allowed per job:
+-maxtime-job <number>
+Example:
+-maxtime-job 60
+
+
+8. -p:
+Set pause in miliseconds between each request sent:
+-p <number>
+Example:
+-p 500
+
+
+9. -rate:
+Limit request rate per second:
+-rate <number>
+Example:
+-rate 10
+
+
+10. -s:
+Silent mode. Only print fuzzing results:
+-s
+
+
+11. -sa:
+Show all responses from server (even those filtered out):
+-sa
+
+
+12. -se:
+Show only error responses:
+-se
+
+
+13. -sf:
+Disable ffuf fallback to default FUZZ if FUZZ isn't included in url:
+-sf
+
+
+14. -t:
+Set number of concurrent threads (requests ran in parallel):
+-t <number>
+Example:
+-t 50	
+
+
+15. -v:
+Verbose output:
+-v
+
+16. -V:
+Extra verbose output:
+-V
+
+
+
+
+3. MATCHER OPTIONS.
+1. -mc:
+Filter results by HTTP status code:
+-mc <code> 
+-mc <code1,...,codei>
+
+
+2. -ml:
+Filter results by length of response body in bytes:
+-ml <length>
+Example:
+-ml 1234
+
+
+3. -mr:
+Show responses that match regex expression:
+-mr <regex>
+Example:
+-mr admin
+
+
+4. -ms:
+Filter responses with specific body size in bytes:
+-ms <size>
+Example:
+-ms 512
+
+
+5. -mw:
+Match responses based on word count:
+-mw <number_words>
+Example:
+-mw 100
+
+
+
+
+FILTER OPTIONS.
+1. -fc:
+Exclude responses with specific http status code:
+-fc <code>
+-fc <code1,...,codei>
+Example:
+-fc 404,403
+
+
+2. -fl:
+Exclude responses with specific	body length in bytes:
+-fl <body_length>
+Example:
+-fl 1234
+
+
+3. -fr:
+Exclude responses that match regex expression:
+-fr <regex>
+Example:
+-fr Not\ Found
+
+
+4. -fs:
+Exclude responses that match response body size in bytes:
+-fs <size>
+Example:
+-fs 512
+
+
+5. -fw:
+Exclude responses where word count matches specific number:
+-fw <number>
+Example:
+-fw 100
+
+
+
+
+INPUT OPTIONS.
+1. -D:
+Specify list of domains to use for DNS resolution:
+-D <file>.txt
+Example:
+-D domains.txt	
+
+
+2. -e:
+Append one/multiple file extensions to each fuzzing keyword:
+-e <ext>
+-e <ext1,...,exti>
+Example:
+-e php,html
+
+
+3. -ic:
+Ignore lines starting by # in wordlist files:
+-ic
+
+
+4. -input-cmd:
+Specify a command, whose output will be used as input for wordlist fuzzing:
+-input-cmd "<command>"
+Example:
+-input-cmd "cat wordlist.txt | grep admin"
+
+
+5. -input-num:
+Limit number of input words taken from input source:
+-input-num <number>
+Example:
+-input-num 100
+
+
+6. input-shell:
+Specify which shell to use to run input command:
+-input-shell <shell>
+Example:
+-input-shell /bin/bash
+
+
+7. -mode:
+Determine way ffuf sends fuzz requests:
+-mode <mode_name>
+mode_name values:
+1. cluster: fuzz multiple inputs at once.
+2. sniper: fuzz one input position at a time.
+3. pitchfork: fuzz multiple positions in parallel.
+4. multiple: similar to pitchfork.
+Example:
+-mode sniper
+
+
+8. -request:
+Provide raw http request (POST) instead of url:
+-request <file_name>.txt
+Example:
+-request req.txt
+
+
+9. -request-proto:
+Set protocol to be used for request:
+-request-proto <protocol>
+Example:
+-request-proto http/1
+
+
+
+
+OUTPUT OPTIONS.
+1. -debug-log:
+Specify file to store debug information and detailed logs:
+-debug-log <file>.log
+Example:
+-debug-log ffuf_debug.log
+
+
+2. -o:
+Save output to file:
+-o <file>.<extension>
+Example:
+-o results.json
+
+
+3. -od:
+Specify directory to save output files:
+-od <directory>
+Example:
+-od scan_results
+
+
+4. -of:
+Specify format to store results:
+-of <format>
+format values:
+1. json (default).
+2. html.
+3. csv.
+4. md.
+
+
+5. -or:
+Specify a filename to save summary report of fuzzing results:
+-or <file>
+Example:
+-or report.txt
