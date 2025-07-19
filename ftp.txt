@@ -15,8 +15,13 @@ Change directory:
 cd <directory>
 Download single file:
 get <filename>
+
+Note:
+Files separated by spaces, not commas.
 Download multiple files:
 mget <files>
+
+
 Upload single file:
 put <filename>
 Upload multiple files:
