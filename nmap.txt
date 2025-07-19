@@ -72,8 +72,12 @@ sudo nmap -sU MACHINE_IP
 
 
 OPTIONS.
+Note (VERY IMPORTANT):
+By default, nmap just scans ports 1-1000, NOT ALL OF THEM.
 Scan all ports:
 -p-
+
+
 Scan port range:
 -px-y
 Scan 100 most common ports:
