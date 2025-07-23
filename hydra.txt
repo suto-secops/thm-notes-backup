@@ -19,7 +19,8 @@ Command:
 sudo hydra <username> <wordlist> MACHINE_IP http-post-form "<path>:<login_credentials>:<invalid_response>"
 If path is main IP address:
 <path> = /
-
+IMPORTANT:
+<invalid_respose> always at end.
 
 
 OPTIONS.

@@ -1,0 +1,34 @@
+CMD COMMANDS.
+
+
+
+
+[>>> 0. CLI TOOLS]
+[COMMAND: clear command prompt screen]
+cls
+
+
+[COMMAND: provide information on specific command]
+help
+
+
+
+
+[>>> 1. BASIC SYSTEM INFORMATION]
+[COMMAND: Check path from command line]
+set
+[NOTE: path where ms will execute commands]
+Path=...
+
+
+[COMMAND: check os version]
+ver
+
+
+[COMMAND: broad overview of software and hardware configuration]
+systeminfo
+
+
+[>>> 2. NETWORK TROUBLESHOOTING]
+
+
